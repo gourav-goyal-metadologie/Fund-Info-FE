@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <name>top</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0);&quot;&gt;DEVELOPER TASK 1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Scenario:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The pharma company would like you to write an Apex Trigger on the Procurement Savings Project Object to roll up the Total Forecast and Total Actual values from all related Procurement Savings Project records to the Supplier records (where populated).&amp;nbsp;This Object will soon be receiving records in batches of 500 from an integration. Please consider any existing Triggers, and re-factor as necessary.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Pre-Steps&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Use the Generate Data tab to generate the base data you need to test out your solution.&lt;/li&gt;&lt;li&gt;Once you&apos;re happy with your solution, please test it&apos;s bulkification by importing the Supplier and Procurement Savings Project csvs found in the Generate Data Tab.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0);&quot;&gt;DEVELOPER TASK 2&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Scenario:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The pharma company would like you to develop a user friendly UI to allow them to mass edit the forecasts and actuals fields held on the Procurement Savings Project Forecast records beneath a Procurement Savings Project record.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Consider when you may or may not want to allow users to edit certain values through the custom UI.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You are free to choose your solution method, whether it be Flow, Aura, LWC or VF.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Pre-Steps&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Use the Generate Data tab to generate the base data you need to test out your solution.&lt;/li&gt;&lt;/ol&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>left</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>decorate</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>richTextValue</name>
+                    <value>&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0);&quot;&gt;DEV SUPPORT TASK 1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Scenario:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The procurement team are having issues importing the Procurement Savings Project xls file found in the Generate Data Tab. It appears to be failing for a portion of the records, and initial analysis suspects an issue with the Apex Trigger on the Procurement Savings Project Object.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please investigate what is causing this, and rectify the issue.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Pre-Steps&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Carry out your initial tests by importing the Supplier and Procurement Savings Project xls files from the Generate Data Tab.&lt;/li&gt;&lt;li&gt;If you need to delete the created Procurement Savings Project records, simply use the delete button in the Generate Data tab.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0);&quot;&gt;DEV SUPPORT TASK 2&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Scenario:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please make the relevant architectural changes to ensure that the Sites Multi-Select Picklist on the&lt;/p&gt;&lt;p&gt;Procurement Savings Project Object is changed so that Procurement Savings Project records can be instead related to Accounts.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Remember that one Savings Project may relate to multiple Accounts.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ensure that any current Sites are maintained through to the new structure.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Pre-Steps&lt;/b&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Use the Generate Data tab to generate the base data you need to test out your solution.&lt;/li&gt;&lt;/ol&gt;</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:richText</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>middle</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>right</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Home Page Default</masterLabel>
+    <template>
+        <name>home:desktopTemplateHeaderThreeColumns</name>
+    </template>
+    <type>HomePage</type>
+</FlexiPage>

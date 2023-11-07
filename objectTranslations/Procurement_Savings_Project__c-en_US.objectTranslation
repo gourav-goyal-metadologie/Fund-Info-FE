@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Procurement Savings Project</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Procurement Savings Projects</value>
+    </caseValues>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- Justification --></label>
+        <name>Justification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project End Date --></label>
+        <name>Project_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Reference --></label>
+        <name>Project_Reference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Start Date --></label>
+        <name>Project_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Site(s) --></label>
+        <name>Sites__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier --></label>
+        <name>Supplier__c</name>
+        <relationshipLabel><!-- Procurement Savings Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Actuals --></label>
+        <name>Total_Actuals__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Forecast --></label>
+        <name>Total_Forecast__c</name>
+    </fields>
+    <layouts>
+        <layout>Procurement Savings Project Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

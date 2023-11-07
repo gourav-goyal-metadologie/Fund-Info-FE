@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Procurement Savings Project Forecast</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Procurement Savings Project Forecasts</value>
+    </caseValues>
+    <fields>
+        <label><!-- April Actual --></label>
+        <name>April_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- April Forecast --></label>
+        <name>April_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- August Actual --></label>
+        <name>August_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- August Forecast --></label>
+        <name>August_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- December Actual --></label>
+        <name>December_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- December Forecast --></label>
+        <name>December_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- February Actual --></label>
+        <name>February_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- February Forecast --></label>
+        <name>February_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- January Actual --></label>
+        <name>January_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- January Forecast --></label>
+        <name>January_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- July Actual --></label>
+        <name>July_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- July Forecast --></label>
+        <name>July_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- June Actual --></label>
+        <name>June_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- June Forecast --></label>
+        <name>June_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- March Actual --></label>
+        <name>March_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- March Forecast --></label>
+        <name>March_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- May Actual --></label>
+        <name>May_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- May Forecast --></label>
+        <name>May_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- November Actual --></label>
+        <name>November_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- November Forecast --></label>
+        <name>November_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- October Actual --></label>
+        <name>October_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- October Forecast --></label>
+        <name>October_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- Procurement Savings Project --></label>
+        <name>Procurement_Savings_Project__c</name>
+        <relationshipLabel><!-- Procurement Savings Project Forecasts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- September Actual --></label>
+        <name>September_Actual__c</name>
+    </fields>
+    <fields>
+        <label><!-- September Forecast --></label>
+        <name>September_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- Site --></label>
+        <name>Site__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Actuals --></label>
+        <name>Total_Actuals__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Forecast --></label>
+        <name>Total_Forecast__c</name>
+    </fields>
+    <layouts>
+        <layout>Procurement Savings Project Forecast Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forecasts and Actuals --></label>
+            <section>Forecasts and Actuals</section>
+        </sections>
+        <sections>
+            <label><!-- Totals --></label>
+            <section>Totals</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

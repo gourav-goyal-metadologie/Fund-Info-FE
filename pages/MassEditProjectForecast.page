@@ -1,0 +1,98 @@
+<apex:page id="MassEditProjectForecast" standardController="Procurement_Savings_Project__c" lightningStylesheets="true"
+           extensions="MassEditProjectForecastCtrl" showHeader="false" sideBar="false">
+
+    <apex:form id="massEditForecastForm">
+        <apex:pageBlock id="massEditForecastBlock">
+            <apex:pageMessages />
+
+            <apex:pageBlockSection id="noForecastBlockSection" rendered="{!OR(forecastRecords = NULL, forecastRecords.size = 0)}">
+                <apex:outputText value="No Procurement Savings Project Forecast record available to update."/>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection id="massEditForecastBlockSection" rendered="{!AND(forecastRecords != NULL, forecastRecords.size > 0)}">
+                <apex:pageBlockTable id="massEditForecastBlockTable"
+                                     value="{!forecastRecords}" var="forecast">
+                    <apex:column value="{!forecast.Name}"/>
+
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.January_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.January_Actual__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.February_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.February_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.March_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.March_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.April_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.April_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.May_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.May_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.June_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.June_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.July_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.July_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.August_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.August_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.September_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.September_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.October_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.October_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.November_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.November_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.December_Actual__c.Label}">
+                        <apex:inputField value="{!forecast.December_Actual__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.January_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.January_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.February_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.February_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.March_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.March_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.April_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.April_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.May_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.May_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.June_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.June_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.July_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.July_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.August_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.August_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.September_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.September_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.October_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.October_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.November_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.November_Forecast__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.Procurement_Savings_Project_Forecast__c.Fields.December_Forecast__c.Label}">
+                        <apex:inputField value="{!forecast.December_Forecast__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockButtons id="massEditForecastButtons" location="bottom" rendered="{!AND(forecastRecords != NULL, forecastRecords.size > 0)}">
+                <apex:commandButton title="Update" value="Update" action="{!saveForecasts}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+
+    </apex:form>
+</apex:page>

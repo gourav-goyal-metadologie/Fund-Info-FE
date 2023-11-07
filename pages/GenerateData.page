@@ -1,0 +1,25 @@
+<apex:page controller="GenerateDataExt" lightningStylesheets="true" title="Generate Data">
+    <apex:form id="theform">
+        <apex:pageblock title="Generate Data" rendered="{!!dataGenerated&&!dataAlreadyGenerated}">
+            <apex:commandbutton value="Generate" action="{!Generate}" rerender="theform"/>
+        </apex:pageblock>
+        
+        <apex:pageblock title="Generate Data" rendered="{!dataGenerated&&!dataAlreadyGenerated }">
+            <apex:pagemessage severity="CONFIRM">Data has been generated!</apex:pagemessage>
+        </apex:pageblock>
+        
+        <apex:pageblock title="Generate Data" rendered="{!dataAlreadyGenerated}">
+            <apex:pagemessage severity="ERROR">Data has already been generated!</apex:pagemessage>
+        </apex:pageblock>
+        
+        <apex:pageblock title="Delete All App Data">
+            <apex:commandbutton value="DELETE ALL APP DATA" action="{!DeleteData}" rerender="theform"/>
+        </apex:pageblock>
+
+        <apex:pageblock title="Data Files">
+            <apex:outputLink value="{!$Resource.Suppliers}">Suppliers.xls</apex:outputLink>
+            <br></br>
+            <apex:outputLink value="{!$Resource.Projects}">Procurement Savings Projects.xls</apex:outputLink>
+        </apex:pageblock>        
+    </apex:form>   
+</apex:page>
