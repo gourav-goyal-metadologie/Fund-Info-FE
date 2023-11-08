@@ -1,0 +1,92 @@
+<template>
+    <template if:true={showToastBar}>
+        <div class="slds-notify_container">
+
+            <template if:true={isSuccessToast}>
+                <div class="slds-notify slds-notify_toast" role="status" style="background-color: white; border: 3px solid green;">
+                    <span class="slds-icon_container slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon icon-name={toastIconName} alternative-text="icon" styleclass="slds-icon slds-icon_small" size="small" style="
+                        padding-top: 10px;"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">
+                            <lightning-formatted-rich-text value={toastTitle}>
+                            </lightning-formatted-rich-text>
+                            <div>{toastMessage}</div>
+                        </h2>
+                    </div>
+                    
+                    <div class="slds-notify__close">
+                        <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModel} ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isErrorToast}>
+                <div class="slds-notify slds-notify_toast" role="status" style="background-color: white; border: 3px solid red;">
+                    <span class="slds-icon_container slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon icon-name={toastIconName} alternative-text="icon" styleclass="slds-icon slds-icon_small" size="small" style="
+                        padding-top: 10px;"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">
+                            <lightning-formatted-rich-text value={toastTitle}>
+                            </lightning-formatted-rich-text>
+                            <div>{toastMessage}</div>
+                        </h2>
+                    </div>
+                    
+                    <div class="slds-notify__close">
+                        <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModel} ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isWarningToast}>
+                <div class="slds-notify slds-notify_toast" role="status" style="background-color: white; border: 3px solid #FFBF00;">
+                    <span class="slds-icon_container slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon icon-name={toastIconName} alternative-text="icon" styleclass="slds-icon slds-icon_small" size="small" style="
+                        padding-top: 10px;"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">
+                            <lightning-formatted-rich-text value={toastTitle}>
+                            </lightning-formatted-rich-text>
+                            <div>{toastMessage}</div>
+                        </h2>
+                    </div>
+                    
+                    <div class="slds-notify__close">
+                        <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModel} ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isErrorWithHyperLinkToast}>
+                <div class="slds-notify slds-notify_toast" role="status" style="background-color: white; border: 3px solid  red;">
+                    <span class="slds-icon_container slds-m-right_small slds-no-flex slds-align-top">
+                        <lightning-icon icon-name={toastIconName} alternative-text="icon" styleclass="slds-icon slds-icon_small" size="small" style="
+                        padding-top: 10px;"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">
+                            <lightning-formatted-rich-text value={toastTitle}>
+                            </lightning-formatted-rich-text>
+
+                            <div>
+                                {firstToastMessageHyperLink} 
+                                <a href={hyperLinkUrl} target="_blank" style="color: blue;">{hyperLinkLabelName}</a>
+                                {secondToastMessageHyperLink}
+                            </div>
+                        </h2>
+                    </div>
+                    
+                    <div class="slds-notify__close">
+                        <lightning-button-icon icon-name="utility:close" size="small" variant="border-filled" class="slds-button slds-button_icon slds-button_icon-inverse" alternative-text="next" onclick={closeModel} ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+    </template>
+</template>

@@ -1,0 +1,111 @@
+<apex:page controller="GetMediumScanRequestIdsController">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+    <script>
+        console.log('calling get midium VF');
+    	let token = '{!token}';
+    	var requestId = '{!requestId}';
+        let baseUrl = '{!baseUrl}';
+
+        var connection = new signalR
+        .HubConnectionBuilder()
+        .withUrl("https://sbx-notificationservice-api.feapi.net/notification", {
+            transport: signalR.HttpTransportType.WebSockets,
+            logging: signalR.LogLevel.Trace,
+            accessTokenFactory: () => token
+        })
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+        connection.on("NotificationService", function (message) {
+             //Do something   
+            console.log('Hey! do something');
+            console.log(message);
+            const obj = JSON.parse(message);
+            
+            // This code is used for the larger code.
+            try{
+                // console.log(obj.NotificationContext.NotificationType,'Notification type');
+                if(obj.NotificationType && obj.NotificationType === 'Completed'){
+                    let sourceMessage = 'MediumScan' + "{!recordId}";
+                    // console.log('NotificationType.sourceMessage', sourceMessage);
+                        
+                    if(obj.RequestId == requestId){
+                        let messgaeToLWC = {
+                                message: requestId,
+                                source: sourceMessage,
+                        }
+                        isStatusComplete = false;
+                        window.parent.postMessage(messgaeToLWC, baseUrl);
+                    }
+                } 
+                else if(obj.NotificationType && obj.NotificationType === 'Failed') {
+                    if(obj.RequestId ==  requestId){
+                        let messgaeToLWC = {
+                            message: 'Pdf generation failed',
+                            source: 'MediumScanFailedError',
+                        }
+                        console.log('messgaeToLWC',messgaeToLWC);
+                        window.parent.postMessage(messgaeToLWC, baseUrl);
+                    }
+                } 
+                else if(obj.NotificationContext && obj.NotificationContext.NotificationType === 'Completed') {
+                    if(obj.RequestId ==  requestId){
+                        isStatusComplete = false;
+                        console.log('obj.RequestId',obj.RequestId);
+                        console.log('requestId',requestId);
+                        let sourceMessage = 'MediumScan' + "{!recordId}";
+                        // console.log('sourceMessage', sourceMessage);
+                        let messgaeToLWC = {
+                            message: requestId,
+                            source: sourceMessage,
+                        }
+                        console.log('messgaeToLWC',messgaeToLWC);
+                        setTimeout(() => {
+                            window.parent.postMessage(messgaeToLWC, baseUrl)
+                        }, 2000);
+                       
+                    }
+                } 
+                else if(obj.NotificationContext && obj.NotificationContext.NotificationType === 'Failed') {
+                    if(obj.RequestId ==  requestId){
+                        let messgaeToLWC = {
+                            message: 'Pdf generation failed',
+                            source: 'MediumScanFailedError',
+                        }
+                        console.log('messgaeToLWC',messgaeToLWC);
+                        window.parent.postMessage(messgaeToLWC, baseUrl);
+                    }
+                }
+            } catch(error) {
+                //'Request Id didn\'t match'
+                console.log('catch block');
+                console.log(error);
+                if(obj.NotificationContext.NotificationType === 'Failed') {
+                    if(obj.RequestId ==  requestId){
+                        let messgaeToLWC = {
+                            message: 'Pdf generation failed',
+                            source: 'MediumScanFailedError',
+                        }
+                        console.log('messgaeToLWC',messgaeToLWC);
+                        window.parent.postMessage(messgaeToLWC, baseUrl);
+                    }
+                }
+            }
+        });
+      	connection.start().then(function () {
+            //Do something
+            console.log('Hey! connect starting');
+     	})
+        .catch(function (err) {
+            console.log('Hey! connect error');
+            let messgaeToLWC = {
+                message: 'Pdf generation failed',
+                source: 'MediumScanFailedError',
+            }
+            console.log('messgaeToLWC',messgaeToLWC);
+            window.parent.postMessage(messgaeToLWC, baseUrl);
+            return console.error(err.toString());
+        });
+    </script>
+</apex:page>

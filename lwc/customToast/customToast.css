@@ -1,0 +1,7 @@
+.slds-notify_container {
+    position: fixed;
+    width: 0 !important;
+    left: 34%;
+    top: 0;
+    text-align: center;
+}

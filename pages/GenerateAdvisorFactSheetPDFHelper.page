@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:includeScript value="/support/console/52.0/integration.js"/> 
+
+<script>
+    //Close tab in Console    
+   var callCloseTab= function callCloseTab(result) {
+       sforce.console.closeTab(result.id);
+    }        
+    function closeTab() {
+        sforce.console.getEnclosingTabId(callCloseTab);
+    }
+    this.closeTab();
+    let paramString = window.location.href.split('?')[1];
+    let url = "{!URLFOR($Page.GenerateAdvisorFactSheetPDF)}".split('?')[0] +'?'+paramString;
+    window.open(url);
+</script>
+</apex:page>

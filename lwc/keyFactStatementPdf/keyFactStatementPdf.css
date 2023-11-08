@@ -1,0 +1,4 @@
+.spinner .slds-spinner_container{
+    background-color:transparent !important;
+    position: unset !important;
+}

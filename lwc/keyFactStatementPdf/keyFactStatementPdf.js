@@ -1,0 +1,187 @@
+import { LightningElement, api, track } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { CloseActionScreenEvent } from 'lightning/actions';
+import getKeyFactStatementPDF from '@salesforce/apex/RenderKeyFactStatementPDFActionService.getKeyFactStatementPDF';
+import fetchCustomMetaDataType from '@salesforce/apex/RenderKeyFactStatementPDFActionService.fetchCustomMetaDataType';
+import IMAGES from '@salesforce/resourceUrl/FE_FundInfo_Logo';
+import CustomToast from '@salesforce/resourceUrl/CustomToast';
+import { loadStyle } from 'lightning/platformResourceLoader';
+
+export default class KeyFactStatementPdf extends LightningElement {
+    @api recordId;
+    retriveRecordId = true;
+    isLoading = true;
+    isShowPdf = false;
+    addLoadingTime = 1;
+    pdfResponse;
+    @track SamplePDFURL;
+    @track unauthorisedMessage;
+    @track unauthorisedMessageHyperlink;
+    @track keyFactStatementPdfSuccessMessage;    
+    @track kFSInvalidCodeErrorMessage;
+    @track doesNotHaveKFSCodeErrorMessage;
+    fundInfoLogo = IMAGES;
+    
+    // using in quick action.
+    renderedCallback() {
+        const style = document.createElement('style');
+        style.innerText = `
+        .slds-modal__content{
+            padding : 0 !important;
+            font-weight: bold;
+            background-color: var(--slds-c-modal-content-color-background, var(--sds-c-modal-content-color-background, var(--slds-c-modal-color-background, var(--sds-c-modal-color-background, var(--lwc-colorBackgroundAlt,rgb(255, 255, 255))))));
+            color: var(--slds-c-modal-content-text-color, var(--sds-c-modal-content-text-color, var(--slds-c-modal-text-color, var(--sds-c-modal-text-color))));
+            overflow: hidden;
+            overflow-y: auto;
+        }`;
+        this.template.querySelector('lightning-quick-action-panel').appendChild(style);
+        const style1 = document.createElement('style');
+        style.innerText = `.slds-spinner_brand.slds-spinner:before, .slds-spinner_brand.slds-spinner:after, .slds-spinner_brand .slds-spinner__dot-a:before, .slds-spinner_brand .slds-spinner__dot-b:before, .slds-spinner_brand .slds-spinner__dot-a:after, .slds-spinner_brand .slds-spinner__dot-b:after, .slds-spinner--brand.slds-spinner:before, .slds-spinner--brand.slds-spinner:after, .slds-spinner--brand .slds-spinner__dot-a:before, .slds-spinner--brand .slds-spinner__dot-b:before, .slds-spinner--brand .slds-spinner__dot-a:after, .slds-spinner--brand .slds-spinner__dot-b:after {
+                            /* background-color: var(--lwc-brandPrimary,rgb(27, 150, 255)); */
+                            background-color: #009CA6;
+                        }
+        .slds-spinner {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            z-index: 9051;
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+        slds-spinner_container {
+            position: unset !important;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: var(--lwc-zIndexSpinner,9050);
+            background-color: var(--lwc-colorBackgroundTempModalTintAlt,rgba(255, 255, 255, 0.75));
+            visibility: visible;
+            opacity: 1;
+            transition: opacity .2s ease,visibility 0s;
+            transition-delay: 0s,.3s;
+        }`;
+
+        const spinner = this.template.querySelector('lightning-spinner');
+        if (spinner) {
+            spinner.appendChild(style1);
+        }
+        Promise.all([
+            loadStyle( this, CustomToast )
+            ]).then(() => {
+                console.log( 'Files loaded' );
+            })
+            .catch(error => {
+                console.log( error.body.message );
+        });
+
+        if (this.retriveRecordId && this.recordId) {
+            this.fetchCustomMetaDataForToastMessage();
+            this.SamplePDFURL = '/apex/fe_FundInfo__GenerateKeyFactStatementPDFHelper?data=';
+            getKeyFactStatementPDF({portfolioHoldingId: this.recordId}) 
+                .then(result =>{
+                    console.log('inside result');
+                    console.log('This is result=',result);
+                    this.retriveRecordId = false;
+
+                    // When Code is Invalid or Code value does not have KFS.
+                    if (result.data == '' && !result.isSuccess && !result.isSuccessForValidate) {
+                        console.log('Code is Invalid or Code value does not have KFS');
+                        this.retriveRecordId = false;
+                        this.isShowPdf = true;
+                        this.isLoading = false;
+                        this.showNotification(result.keyfactStatementErrorMessage, 'error', 'sticky');
+                        this.dispatchEvent(new CloseActionScreenEvent());
+                    }
+                    // When we get success response.
+                    else if(result.isSuccessForValidate && result.data != 'error' && result.isSuccess) {
+                        this.retriveRecordId = false;
+                        this.isShowPdf = true;
+                        this.SamplePDFURL += this.recordId;
+                        this.pdfResponse = true;
+                    }
+                    // When any error occur link 400 or server down.
+                    else if(result.isSuccessForValidate && result.data == 'error' && !result.isSuccess) {
+                        this.retriveRecordId = false;
+                        this.isShowPdf = true;
+                        this.isLoading = false;
+                        this.showNotification(result.keyfactStatementErrorMessage, 'error', 'sticky');
+                        this.dispatchEvent(new CloseActionScreenEvent());     
+                    }
+                    // For invalid user (Validate Licence)
+                    else if(result.data == 'vlalidation' && !result.isSuccessForValidate && !result.isSuccess && result.keyfactStatementErrorMessage == this.unauthorisedMessage) {
+                        console.log('inside validation error');
+                        this.retriveRecordId = false;
+                        this.isShowPdf = false;
+                        this.isLoading = true;
+                        let message = this.unauthorisedMessage.split('LINK')[0];
+                        let urlLabel = this.unauthorisedMessage.split('LINK')[1];
+                        let message2 = this.unauthorisedMessage.split('LINK')[2];
+                        this.showToastNotificationWithHyperLink(message, message2, 'error', urlLabel, this.unauthorisedMessageHyperlink);
+                        this.dispatchEvent(new CloseActionScreenEvent());
+                    }
+                })
+                .catch(error =>{
+                    console.log('enter in console error');
+                    console.log(error);
+                    this.isLoading = false;
+                    this.retriveRecordId = false;
+                    this.showNotification(this.kFSInvalidCodeErrorMessage, 'error', 'sticky');
+                    this.dispatchEvent(new CloseActionScreenEvent());
+                })
+        }
+    }
+
+    fetchCustomMetaDataForToastMessage() {
+        fetchCustomMetaDataType()
+            .then(result => {
+                console.log(result);
+                this.unauthorisedMessage = result.Fe_FundInfo__Unauthorised_Message__c;
+                this.unauthorisedMessageHyperlink = result.Fe_FundInfo__Unauthorised_Message_Hyperlink__c;
+                this.keyFactStatementPdfSuccessMessage = result.Fe_FundInfo__KeyFactStatement_PDF_Success_Message__c;
+                this.doesNotHaveKFSCodeErrorMessage = result.Fe_FundInfo__Does_Not_Have_KFS_Code_Error_Message__c;
+                this.kFSInvalidCodeErrorMessage = result.Fe_FundInfo__KFS_Invalid_Code_Error_Message__c;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+    
+    handleCancel(event) {
+        this.dispatchEvent(new CloseActionScreenEvent());
+    }
+
+    showNotification(message, variant, mode) {
+        const evt = new ShowToastEvent({
+            title: 'Key Fact Statement',
+            message: message, 
+            variant: variant,
+            mode: mode
+        });
+        this.dispatchEvent(evt);
+    }
+
+    showToastNotificationWithHyperLink(message, message2, variant, urlLabel, url) {
+        const evt = new ShowToastEvent({
+            title: 'Invalid FE Analytics User',
+            message: message + ' {1} '+ message2, 
+            variant: variant,
+            mode: 'sticky',
+            messageData: [
+                'Salesforce',
+                {
+                    url: url,
+                    label: urlLabel,
+                },
+            ],
+        });
+        this.dispatchEvent(evt);
+    }
+
+    handleOnLoad(){
+        setTimeout(() => {
+            if (this.pdfResponse) {
+                this.dispatchEvent(new CloseActionScreenEvent());
+            }
+        }, this.addLoadingTime*1000);
+    }
+}

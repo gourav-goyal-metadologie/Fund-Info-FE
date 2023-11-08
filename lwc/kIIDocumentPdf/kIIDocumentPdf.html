@@ -1,0 +1,26 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+             <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+             </lightning-spinner>
+        </template>
+    </div>
+    <b style="display: none;">{recordId}</b>
+    <lightning-quick-action-panel>
+        <div  style="width:100%; height:100%; padding:0;">
+            <div style="text-align: center; padding-top: 0px;" class="slds-p-around_large">
+                <div class="slds-text-heading_medium" style="color : #00A499; font-size: 28px; padding-bottom: 13px; font-weight: bold;">
+                    Opening Kii/Ki Document
+                </div>
+                <div style="color: black;">Powered by FE Fundinfo</div>
+                <img src={fundInfoLogo} alt="no image preview" style="width: 16%;">
+            </div>
+        </div>
+        <div if:true={isShowPdf} style="width:100%; height:100%; padding:0; display:none;">
+            <iframe onload={handleOnLoad} src={SamplePDFURL} frameborder="0" width="100%" style="height: 60vh;"></iframe>
+        </div>
+        <div slot="footer">
+          <button class="slds-button slds-button_neutral" onclick={handleCancel} aria-label="Cancel and close">Cancel</button>
+        </div>
+    </lightning-quick-action-panel>  
+</template>
